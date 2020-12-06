@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tournament>
+	<tournament-name>DTC</tournament-name>
+	<tournament-password>sample</tournament-password>
+	<first-round>
+		<title>First Round</title>
+		<date>December 1</date>
+		<jm-an>Dodong-Andot</jm-an>
+		<rw-nn>Winge-Noynoy</rw-nn>
+		<nip-pat>Ipin-Pat</nip-pat>
+		<zho-att>Zhorelle-Atty</zho-att>
+	</first-round>
+</tournament>

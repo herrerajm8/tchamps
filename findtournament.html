@@ -1,0 +1,83 @@
+<!DOCTYPE hmtl>
+<html>
+<head>
+	<title>DTC</title>
+	<!-- <link rel="icon" href="img/logonobg.png"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="dtcstyle.css">
+	<!-- ONLINE -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<!-- OFFLINE -->
+  	<!-- <link rel="stylesheet" href="bootstrap.min.css">
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+  	<script src="popper.min.js"></script> -->
+
+</head>
+<body style="background-color: green;">
+
+	<div class="container">
+		<img src="dtc.PNG" class="mx-auto d-block mb-3" style="width: 25%;">
+		<input type="text" name="t-name" id="t-name" placeholder="Tournament name" class="form-control mx-auto mb-3" style="width: 50%;">
+		<input type="password" name="t-pass" id="t-pass" placeholder="Tournament password" class="form-control mx-auto mb-3" style="width: 50%;">
+		<button type="submit" class="btn btn-outline-light btn-block mx-auto mb-3" style="width: 50%;" onclick="getTourna()">Submit</button>
+		<a type="submit" class="btn btn-outline-light btn-block mx-auto mb-3" style="width: 50%;" href="index.html">Cancel</a>
+	</div>
+	<div class="container" style="background-color: white; padding: 1%;">
+		<h3 id="tnamefinal" class="text-center"></h3>
+		<p hidden id="tpassfinal">PASSWORD</p>
+	</div>
+
+<script>
+   	const inputn = document.querySelector('#t-name');
+   	const inputp = document.querySelector('#t-pass');
+
+	const logn = document.getElementById('tnamefinal');
+	const logp = document.getElementById('tpassfinal');
+
+	inputn.addEventListener('input', updateValue);
+	inputp.addEventListener('input', updatePass);
+
+	function updateValue(e) {
+  		logn.textContent = e.target.value;
+	}
+
+	function updatePass(e){
+		logp.textContent = e.target.value;
+	}
+
+	function getTourna(){
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) {
+		    displayTourna(this);
+		    }
+		  };
+		xmlhttp.open("GET", "sampletournament.xml", true);
+		xmlhttp.send();
+	}
+
+	function displayTourna(xml) {
+	  var i;
+	  var xmlDoc = xml.responseXML;
+	  var table="<tr><th>Artist</th><th>Title</th></tr>";
+	  var x = xmlDoc.getElementsByTagName("CD");
+	  for (i = 0; i <x.length; i++) { 
+	    table += "<tr><td>" +
+	    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+	    "</td><td>" +
+	    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+	    "</td></tr>";
+	  }
+	  document.getElementById("demo").innerHTML = table;
+	}
+
+		
+</script>
+
+</body>
+</html>
+
